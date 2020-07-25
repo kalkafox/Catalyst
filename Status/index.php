@@ -9,7 +9,6 @@ use \Catalyst\User\User;
 
 define("PAGE_KEYWORD", Values::STATUS[0]);
 define("PAGE_TITLE", Values::createTitle(Values::STATUS[1], []));
-define("NO_HEADER", 1);
 
 if (User::isLoggedIn()) {
 	define("PAGE_COLOR", $_SESSION["user"]->getColor());
@@ -18,12 +17,13 @@ if (User::isLoggedIn()) {
 }
 
 require_once Values::HEAD_INC;
-?></div>
-	<?php include('status.html'); ?>
-		</div>
-		<div class="row center align-center no-margin">
-			<h4>Have any questions or need more information?</h4>
-			<p class="flow-text">Please send us an e-mail at <a href="mailto:catalyst@catalystapp.co">catalyst@catalystapp.co</a> and we will try to respond as soon as possible!</p>
-		</div>
-<div><?php
+
+echo UniversalFunctions::createHeading("System Status");
+?>
+	<p class="flow-text">
+		<strong>CPU Usage:</strong> <img src="<?= ROOTDIR ?>api/internal/stats/?badge=cpu"></img>
+	</p>
+
+	<p><i>We hope to add more useful information to this page soon!</i></p>
+<?php
 require_once Values::FOOTER_INC;
